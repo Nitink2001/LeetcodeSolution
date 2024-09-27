@@ -1,0 +1,32 @@
+
+def mergeSort(arr):
+    
+    if len(arr) <= 1:
+        return arr
+    mid = len(arr)//2
+    left_arr = mergeSort(arr[:mid])
+    right_arr = mergeSort(arr[mid:])
+    
+    print('L',left_arr)
+    print('R',right_arr)
+    
+    i=j=0
+    new_arr = []
+    while i<len(left_arr) and j < len(right_arr):
+        if left_arr[i] < right_arr[j]:
+            new_arr.append(left_arr[i])
+            i+=1
+        else:
+            new_arr.append(right_arr[j])
+            j+=1
+    
+    while i<len(left_arr):
+        
+        new_arr.append(left_arr[i])
+        i+=1
+    while j<len(right_arr):
+        
+        new_arr.append(right_arr[j])   
+        j+=1
+    return new_arr
+print(mergeSort([2,5,4,3,6,1]))
