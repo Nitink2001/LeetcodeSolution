@@ -1,0 +1,55 @@
+
+def mergeSort(arr, result):
+    
+    # result = [0] * len(arr)
+    if len(arr) <= 1:
+        return arr
+    mid = len(arr)//2
+    left_arr = mergeSort(arr[:mid], result)
+    right_arr = mergeSort(arr[mid:], result)
+    
+    print('L',left_arr)
+    print('R',right_arr)
+    i=j=0
+    icount = 0 
+    new_arr = []
+    while i < len(left_arr) and j < len(right_arr):
+        # print('Array', left_arr[i][1])
+        if left_arr[i][0] <= right_arr[j][0]:
+            result[left_arr[i][1]] += icount
+            print('icount-ori', result[left_arr[i][1]],icount)
+            new_arr.append(left_arr[i])
+            i+=1
+        else:
+
+            icount += 1
+            print('icount', icount)
+            print('Result', result)
+            new_arr.append(right_arr[j])
+            j+=1
+    
+    while i < len(left_arr):
+        result[left_arr[i][1]] += icount
+        new_arr.append(left_arr[i])
+        i+=1
+    while j < len(right_arr):
+        
+        new_arr.append(right_arr[j])
+        j+=1
+    return  new_arr
+
+arr = [5, 2, 6, 1]
+result = [0] * len(arr)
+arr = [(val, idx) for idx, val in enumerate(arr)]
+print(mergeSort(arr, result))
+print(result)
+
+
+
+
+
+
+
+
+
+
